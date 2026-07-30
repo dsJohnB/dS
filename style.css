@@ -1,0 +1,222 @@
+@import url('https://googleapis.com');
+
+:root {
+    --bgColor: #3b224c;       /* Roxo Pantone escuro */
+    --bgColor2: #140b1c;      /* Quase preto arroxeado para profundidade */
+    --accentColor: #f1f5f9;   /* Letras brancas suaves */
+    --font: 'Karla', sans-serif;
+    --delay: .3s;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: var(--font);
+    background: radial-gradient(ellipse at bottom, var(--bgColor) 0%, var(--bgColor2) 100%);
+    opacity: 0;
+    animation: 1s ease-out var(--delay) 1 transitionAnimation;
+    animation-fill-mode: forwards;
+    overflow-x: hidden;
+}
+
+#profilePicture, #profilePicture img {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    display: block;
+    margin: 35px auto 20px;
+    border-radius: 50%;
+    -webkit-tap-highlight-color: transparent;
+    object-fit: cover;
+}
+
+#userName {
+    color: var(--accentColor);
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 1.25;
+    display: block;
+    font-family: var(--font);
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+#links {
+    max-width: 450px;
+    width: auto;
+    display: block;
+    margin: 27px auto;
+    padding: 0 20px;
+}
+
+.link {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.04);
+    color: var(--accentColor);
+    border: solid rgba(241, 245, 249, 0.7) 1.5px;
+    border-radius: 50px;
+    font-size: 1rem;
+    text-align: center;
+    display: block;
+    margin-bottom: 15px;
+    padding: 14px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+    .link:hover {
+        background-color: var(--accentColor);
+        color: var(--bgColor2);
+        transform: scale(1.03);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+}
+
+.link:active {
+    background-color: var(--accentColor);
+    color: var(--bgColor2);
+}
+
+#hashtag {
+    position: relative;
+    padding: 20px 0;
+    color: var(--accentColor);
+    font-size: 1rem;
+    display: block;
+    font-family: var(--font);
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(90deg, var(--bgColor), var(--accentColor), var(--bgColor));
+    background-repeat: no-repeat;
+    background-size: 80%;
+    animation: animate 3s linear var(--delay) infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+
+/*-------------------------animations-----------------------*/
+@keyframes transitionAnimation {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes animate {
+    0% { background-position: -500%; }
+    100% { background-position: 500%; }
+}
+
+@keyframes animStar {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-2000px); }
+}
+
+/*-------------------------popup------------------------*/
+.overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+    visibility: hidden;
+    opacity: 0;
+    transition: .4s ease-in-out;
+}
+
+.popup {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+    width: 80%;
+    background-color: #21122e;
+    border: 1px solid var(--accentColor);
+    border-radius: 12px;
+    transform: scale(0);
+    transition: .4s ease-in-out;
+}
+
+.popup-quote {
+    font-family: var(--font);
+    color: var(--accentColor);
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.overlay:target .popup {
+    transform: scale(1);
+}
+
+.popup-close {
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    background-color: var(--accentColor);
+    color: var(--bgColor2);
+    line-height: 32px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/*-----------------------stars background-----------------------*/
+#stars1, #stars2, #stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    animation: animStar 60s linear infinite;
+    box-shadow: 120px 400px #FFF, 350px 800px #FFF, 800px 200px #FFF, 950px 700px #FFF, 150px 100px #FFF, 600px 900px #FFF, 250px 550px #FFF, 750px 450px #FFF, 900px 150px #FFF, 450px 300px #FFF;
+}
+#stars2 {
+    width: 3px;
+    height: 3px;
+    animation: animStar 40s linear infinite;
+    box-shadow: 200px 300px #FFF, 500px 700px #FFF, 700px 100px #FFF, 850px 600px #FFF, 100px 800px #FFF;
+}
+#stars3 {
+    width: 4px;
+    height: 4px;
+    animation: animStar 25s linear infinite;
+    box-shadow: 300px 200px #FFF, 600px 600px #FFF, 800px 800px #FFF;
+}
+/* Configuração para os novos ícones alinharem perfeitamente */
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Cria o espaço exato entre o ícone e o texto */
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor; /* Faz o ícone herdar a cor do texto automaticamente */
+    transition: fill 0.25s ease;
+}
+
+
