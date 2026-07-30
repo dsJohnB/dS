@@ -22,6 +22,7 @@ body {
 
 #profilePicture, #profilePicture img {
     position: relative;
+    z-index: 5; /* Garante o clique na foto */
     width: 96px;
     height: 96px;
     display: block;
@@ -32,8 +33,10 @@ body {
 }
 
 #userName {
+    position: relative;
+    z-index: 5; /* Garante estabilidade visual */
     color: var(--accentColor);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     line-height: 1.25;
     display: block;
@@ -41,8 +44,8 @@ body {
     width: 100%;
     text-align: center;
     text-decoration: none;
-    margin-bottom: 20px;
 }
+
 
 #links {
     max-width: 450px;
@@ -54,19 +57,25 @@ body {
 
 .link {
     position: relative;
-    background-color: rgba(255, 255, 255, 0.04);
+    z-index: 5; /* ISSO TRAZ OS BOTÕES PARA A FRENTE */
+    background-color: transparent;
     color: var(--accentColor);
-    border: solid rgba(241, 245, 249, 0.7) 1.5px;
-    border-radius: 50px;
+    border: solid var(--accentColor) 2px;
+    border-radius: 10px;
     font-size: 1rem;
     text-align: center;
-    display: block;
-    margin-bottom: 15px;
+    display: flex;       /* Garante o alinhamento dos ícones */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
     padding: 14px;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all .25s ease;
     -webkit-tap-highlight-color: transparent;
 }
+
 
 @media (hover: hover) {
     .link:hover {
